@@ -1,0 +1,58 @@
+<app-layout>
+    <div class="profile-container">
+        <div class="row">
+            <div class="col-6">
+                <h2>Profilim</h2>
+                <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                    <div *ngIf="user">
+                        <p><strong>Ad:</strong> {{user.name}}</p>
+                        <p><strong>Soyad:</strong> {{user.surname}}</p>
+                        <p><strong>Kimlik Numarası:</strong> {{user.identificationNumber}}</p>
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label"><strong>Telefon Numarası:</strong></label>
+                            <input type="number" id="phoneNumber" formControlName="phoneNumber"
+                                class="form-control w-50">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><strong>Email:</strong></label>
+                            <input type="email" id="email" formControlName="email" class="form-control w-50">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label"><strong>Password:</strong></label>
+                            <input type="password" id="password" formControlName="password" class="form-control w-50"
+                                placeholder="Lütfen Şifrenizi veya Yeni Şifrenizi Giriniz!">
+                        </div>
+                        <p><strong>Kullanıcı Rolü:</strong> {{user.role}}</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                    <button type="button" class="btn btn-success mx-3" (click)="send()">Adres Ekle</button>
+                </form>
+                <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div> <!-- Mesajı göster -->
+            </div>
+            <div class="col-6">
+                <h3>Kullanıcı Adresleri</h3>
+                <div class="row">
+                    <div *ngFor="let address of user.userAddresses; let i = index" class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Adres {{ i + 1 }}</h5>
+                                <p class="card-text"><strong>İl:</strong> {{ address.district.city.name }}</p>
+                                <p class="card-text"><strong>İlçe:</strong> {{ address.district.name }}</p>
+                                <p class="card-text"><strong>Adres Detayı:</strong> {{ address.addressText }}</p>
+                                <button type="button" class="btn btn-success"
+                                    (click)="onUpdate(address.id)">Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6"></div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<app-layout>
+    <div class="container">
+        <form [formGroup]="reservationForm" (ngSubmit)="confirmReservation()">
+            <div class="mb-3">
+                <label for="paymentType" class="form-label">Ödeme Tipi</label>
+                <select id="paymentType" formControlName="paymentType" class="form-control form-select">
+                    <option *ngFor="let type of paymentTypes" [value]="type">{{ type }}</option>
+                </select>
+            </div>
+
+            <div formArrayName="guests">
+                <div *ngFor="let guest of guests.controls; let i = index" [formGroupName]="i" class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="name" class="form-label">İsim</label>
+                            <input type="text" formControlName="name" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="surname" class="form-label">Soyisim</label>
+                            <input type="text" formControlName="surname" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="identificationNumber" class="form-label">Kimlik Numarası</label>
+                            <input type="text" formControlName="identificationNumber" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="gender" class="form-label">Cinsiyet</label>
+                            <select formControlName="gender" class="form-control form-select">
+                                <option value="ERKEK">Erkek</option>
+                                <option value="KADIN">Kadın</option>
+                            </select>
+                        </div>
+                        <div class="col-auto align-self-center">
+                            <button type="button" class="btn btn-danger" (click)="removeGuest(i)">X</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" (click)="addGuest()">Misafir Ekle</button>
+            <button type="submit" class="btn btn-success" [disabled]="reservationForm.invalid">Onayla ve Ödeme
+                Yap</button>
+        </form>
+    </div>
+</app-layout>

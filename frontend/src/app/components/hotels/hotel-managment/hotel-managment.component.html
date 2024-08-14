@@ -1,0 +1,20 @@
+<app-layout>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <h3>Otel Yönetimi</h3>
+                    <a routerLink="myhotellist" class="list-group-item list-group-item-action" aria-current="true">
+                        Otellerim
+                    </a>
+                    <a class="list-group-item list-group-item-action" routerLink="createhotel">Otel Yarat</a>
+
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</app-layout>

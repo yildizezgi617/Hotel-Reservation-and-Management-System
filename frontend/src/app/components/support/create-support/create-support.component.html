@@ -1,0 +1,28 @@
+<div class="container">
+    <h3 class="text-primary">Destek Talebi Oluştur</h3>
+    <form [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="title">Başlık</label>
+            <input id="title" formControlName="title" type="text" class="form-control">
+            <div *ngIf=" supportForm.get('title')?.invalid && supportForm.get('title')?.touched">
+                <div *ngIf="supportForm.get('title')?.errors?.['required']">Başlık gerekli.</div>
+                <div *ngIf="supportForm.get('title')?.errors?.['minlength']">Başlık en az 5 karakter olmalıdır.</div>
+                <div *ngIf="supportForm.get('title')?.errors?.['maxlength']">Başlık en fazla 50 karakter olabilir.</div>
+            </div>
+        </div>
+
+        <div>
+            <label for="text">Metin</label>
+            <textarea id="text" formControlName="text" class="form-control"></textarea>
+            <div *ngIf="supportForm.get('text')?.invalid && supportForm.get('text')?.touched">
+                <div *ngIf="supportForm.get('text')?.errors?.['required']">Metin gerekli.</div>
+                <div *ngIf="supportForm.get('text')?.errors?.['minlength']">Metin en az 10 karakter olmalıdır.</div>
+                <div *ngIf="supportForm.get('text')?.errors?.['maxlength']">Metin en fazla 300 karakter olabilir.</div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary my-3" type="submit" [disabled]="supportForm.invalid">Gönder</button>
+    </form>
+    <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div> <!-- Mesajı göster -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

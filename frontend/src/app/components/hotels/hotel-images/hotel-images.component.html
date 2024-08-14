@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Hotel Image Upload</h2>
+    <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="image">Resim Yükle</label>
+            <input type="file" id="image" (change)="onFileSelect($event)" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Yükle</button>
+    </form>
+</div>

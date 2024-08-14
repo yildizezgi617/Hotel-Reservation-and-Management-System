@@ -1,0 +1,42 @@
+<app-layout>
+    <div class="container mt-5">
+        <h2 class="text-center">Rezervasyonlar</h2>
+        <div *ngIf="reservations.length > 0">
+            <div class="row">
+                <div *ngFor="let reservation of reservations" class="col-md-6 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header">
+                            Reservation No: {{ reservation[0] }}
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="card-title">{{ reservation[6] }} {{ reservation[7] }}</h5>
+                                    <p class="card-text"><strong>TC Kimlik No:</strong> {{ reservation[8] }}</p>
+                                    <p class="card-text"><strong>Email:</strong> {{ reservation[9] }}</p>
+                                    <p class="card-text"><strong>Cinsiyet:</strong> {{ reservation[10] }}</p>
+                                    <p class="card-text"><strong>Telefon:</strong> {{ reservation[11] }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="card-text"><strong>Giriş Tarihi:</strong> {{ reservation[1] }}</p>
+                                    <p class="card-text"><strong>Çıkış Tarihi:</strong> {{ reservation[2] }}</p>
+
+                                    <p class="card-text"><strong>Toplam Tutar:</strong> {{ reservation[4] |
+                                        currency:'TRY' }}</p>
+                                    <p class="card-text"><strong>Oda Tipi:</strong> {{ reservation[5] }}</p>
+                                    <p class="card-text"><strong>Durum:</strong> {{ reservation[3] }}
+                                        <button class="btn btn-outline-success pl-2"
+                                            (click)="updateReservationStatus(reservation[0])">Durum Güncelle</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="reservations.length === 0">
+            <p>Bu otelde hiç rezervasyon bulunmamaktadır.</p>
+        </div>
+    </div>
+</app-layout>

@@ -1,0 +1,26 @@
+<div class="container">
+    <h2 class="text-center">Oda Ekle</h2>
+    <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="roomType" class="form-label">Oda Tipi</label>
+            <input type="text" id="roomType" formControlName="roomType" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Kapasite</label>
+            <input type="number" id="capacity" formControlName="capacity" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Fiyat</label>
+            <input type="number" id="price" formControlName="price" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="roomStatus" class="form-label">Oda Durumu</label>
+            <select id="roomStatus" formControlName="roomStatus" class="form-control form-select">
+                <option *ngFor="let status of roomStatuses" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="roomForm.invalid">Ekle</button>
+    </form>
+    <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

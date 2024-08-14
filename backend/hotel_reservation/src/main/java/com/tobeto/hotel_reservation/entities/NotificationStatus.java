@@ -1,0 +1,11 @@
+package com.tobeto.hotel_reservation.entities;
+
+public enum NotificationStatus {
+    PENDINGRESERVATION,
+    CONFIRMEDRESERVATION,
+    CANCELEDRESERVATION,
+    NEWFEEDBACK,
+    NEWRESPONSEFEEDBACK,
+    NEWSUPPORTDEMAND,
+    SUPPORTDEMANDCLOSED
+}

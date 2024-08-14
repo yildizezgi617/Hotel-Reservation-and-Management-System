@@ -1,0 +1,52 @@
+<nav class="navbar bg-primary navbar-expand-lg fixed-top" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">Tatilya.com</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" routerLink="/">Ana Sayfa</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown" *ngIf="isLoggedIn">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Kullanıcı Bilgileri
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/profile">Profile Git</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/support">Destek Taleplerim</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/myreservationlist"
+                                (click)="navigateToReservationList()">Rezervasyon Listem</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn && userRole === 'MANAGER'">
+                    <a class="nav-link" routerLink="/hotelmanagment">Manager Paneli</a>
+                </li>
+                <li class="nav-item nav-item1" *ngIf="isLoggedIn">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedIn">
+                    <a class="nav-link" routerLink="/register">Kayıt Ol</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLoggedIn">
+                    <a class="nav-link" routerLink="/login">Giriş Yap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/">
+                        <i class="bi bi-4-square-fill"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

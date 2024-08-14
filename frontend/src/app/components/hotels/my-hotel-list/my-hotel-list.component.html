@@ -1,0 +1,46 @@
+<div class="container">
+    <h2 class="text-center">Otellerim</h2>
+    <div *ngIf="hotels.length > 0">
+        <ul class="list-group">
+            <li *ngFor="let hotel of hotels; let i = index"
+                class="list-group-item m-5 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+                <div class="row">
+                    <div class="col-3">
+                        <h3>Hotel-Image</h3>
+                    </div>
+                    <div class="col-5">
+                        <h5>{{ hotel.name }}</h5>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn btn-primary my-2" (click)="addHotelDetails(hotel.id)">Otel'e Git</button>
+                        <button class="btn btn-success mb-2" (click)="viewReservations(hotel.id)">Rezervasyonları
+                            Görüntüle</button>
+                    </div>
+                </div>
+                <div class="accordion" [attr.id]="'accordionExample' + i">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" [attr.id]="'heading' + i">
+                            <button class="accordion-button" type="button" [attr.data-bs-toggle]="'collapse'"
+                                [attr.data-bs-target]="'#collapse' + i" aria-expanded="false"
+                                [attr.aria-controls]="'collapse' + i">
+                                Yönetim Bölümü
+                            </button>
+                        </h2>
+                        <div [attr.id]="'collapse' + i" class="accordion-collapse collapse"
+                            [attr.aria-labelledby]="'heading' + i" [attr.data-bs-parent]="'#accordionExample' + i">
+                            <div class="accordion-body d-flex justify-content-around">
+                                <button class="btn btn-primary" (click)="updateHotel(hotel.id)">Otel Güncelle</button>
+                                <button class="btn btn-primary" (click)="addHotelAddress(hotel.id)">Adres Ekle</button>
+                                <button class="btn btn-primary" (click)="addHotelImages(hotel.id)">Resim Ekle</button>
+                                <button class="btn btn-primary" (click)="addRoom(hotel.id)">Oda Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="hotels.length === 0">
+        <p>Hiç oteliniz bulunmamaktadır.</p>
+    </div>
+</div>

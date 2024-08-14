@@ -1,0 +1,24 @@
+<div class="container mt-5">
+    <h2>Otel Oluştur</h2>
+    <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Otel Adı</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Telefon Numarası</label>
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="hotelStar" class="form-label">Otel Yıldızı</label>
+            <input type="number" id="hotelStar" formControlName="hotelStar" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Otel Açıklaması</label>
+            <input type="text" id="description" formControlName="description" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="hotelForm.invalid">Oluştur</button>
+    </form>
+    <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div> <!-- Mesajı göster -->
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+</div>

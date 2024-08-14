@@ -1,0 +1,82 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-5">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://picsum.photos/id/276/600/400" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://picsum.photos/id/211/600/400" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://picsum.photos/id/223/600/400" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-6">
+            <div *ngIf="hotel">
+                <h3>{{ hotel.name }}</h3>
+                <p>Telefon: {{ hotel.phoneNumber }}</p>
+                <p>Yıldız: {{ hotel.hotelStar }}</p>
+                <button class="btn btn-primary mt-2" (click)="viewFeedbacks(hotel.id)">Yorumları Görüntüle</button>
+            </div>
+            <div *ngIf="!hotel">
+                <p>Hotel bulunamadı.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-4">
+            <div *ngIf="hotel">
+                <h3>Hotel Açıklaması</h3>
+                <p>{{ hotel.description }}</p>
+            </div>
+        </div>
+        <div class="col-4">
+            <h3>Otel Adresi</h3>
+            <div *ngIf="hotel.hotelAddress">
+                <p>{{ hotel.hotelAddress.addressText }}</p>
+                <p>{{ hotel.hotelAddress.district.name }}, {{ hotel.hotelAddress.district.city.name }}</p>
+            </div>
+            <div *ngIf="!hotel.hotelAddress">
+                <p>Adres bulunamadı.</p>
+            </div>
+        </div>
+        <div class="col-4">
+        </div>
+    </div>
+    <div class="row">
+        <h3>Odalar</h3>
+        <div *ngIf="hotel.rooms && hotel.rooms.length > 0">
+            <div class="row">
+                <div *ngFor="let room of hotel.rooms; let i = index" class="col-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ room.roomType }}</h5>
+                            <p class="card-text">Kapasite: {{ room.capacity }}</p>
+                            <p class="card-text">Fiyat: {{ room.price | currency:'TRY':'symbol':'1.2-2' }}</p>
+                            <p class="card-text">Durum: {{ room.roomStatus }}</p>
+                            <button class="btn btn-primary" (click)="updateRoom(room.id,hotel.id)">Güncelle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!hotel.rooms || hotel.rooms.length === 0">
+            <p>Oda bulunamadı.</p>
+        </div>
+    </div>
+</div>

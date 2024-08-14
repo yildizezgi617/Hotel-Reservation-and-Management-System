@@ -1,0 +1,56 @@
+<app-layout>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center">Otel Yorumlarını Görüntüle</h2>
+                <div *ngIf="message" class="alert alert-info">{{ message }}</div>
+                <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+                <div *ngIf="feedbacks.length > 0">
+                    <div class="row">
+                        <div *ngFor="let feedback of feedbacks" class="col-md-6 mb-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    Yorum Tarihi: {{ feedback[7] }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Otel: {{ feedback[0] }}</h5>
+                                    <p class="card-text"><strong>Oda Tipi:</strong> {{ feedback[1] }}</p>
+                                    <p class="card-text"><strong>Giriş Tarihi:</strong> {{ feedback[2] }}</p>
+                                    <p class="card-text"><strong>Çıkış Tarihi:</strong> {{ feedback[3] }}</p>
+                                    <p class="card-text"><strong>Misafir:</strong> {{ feedback[4] }} {{ feedback[5] }}
+                                    </p>
+                                    <p class="card-text"><strong>Yorum:</strong> {{ feedback[6] }}</p>
+                                </div>
+                                <div class="accordion" id="accordionExample">
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="headingOne">
+                                            <button class="accordion-button collapsed" type="button"
+                                                [attr.data-bs-toggle]="'collapse'"
+                                                [attr.data-bs-target]="'#collapseOne' + feedback[8]"
+                                                aria-expanded="true" [attr.aria-controls]="'collapseOne' + feedback[8]">
+                                                Geri Bildirim Yanıtı
+                                            </button>
+                                        </h2>
+                                        <div [attr.id]="'collapseOne' + feedback[8]" class="accordion-collapse collapse"
+                                            aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                            <div class="accordion-body">
+                                                <p class="card-text"><strong>Yanıt Tarihi:</strong> {{ feedback[9] }}
+                                                </p>
+                                                <p class="card-text"><strong>Yanıt:</strong> {{ feedback[10] }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="feedbacks.length === 0">
+                    <p class="text-center">Bu otelde henüz yorum bulunmamaktadır.</p>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</app-layout>

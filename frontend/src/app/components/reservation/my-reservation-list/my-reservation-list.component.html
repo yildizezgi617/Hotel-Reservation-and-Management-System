@@ -1,0 +1,64 @@
+<app-layout>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center mb-4">My Reservations</h2>
+                <div *ngIf="reservations && reservations.length; else noReservations">
+                    <div *ngFor="let reservation of reservations; let i = index">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Reservation No: {{ reservation[0] }}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ reservation[9] }}</h5>
+                                <p class="card-text">
+                                    <strong>Telefon Numarası: </strong> {{ reservation[3] }}<br>
+                                    <strong>Giriş Tarihi: </strong> {{ reservation[4] }}<br>
+                                    <strong>Çıkış Tarihi: </strong> {{ reservation[5] }}<br>
+                                    <strong>Rezervasyon Durumu: </strong> {{ reservation[6] }}<br>
+                                    <strong>Ödeme Miktarı:</strong> {{ reservation[7] | currency:'TRY' }}<br>
+                                    <button class="btn btn-success mt-4" (click)="addFeedback(reservation[0])">Yorum
+                                        Ekle</button>
+                                </p>
+                            </div>
+                            <div class="accordion accordion-flush" [attr.id]="'accordionFlushExample' + i">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" [attr.id]="'flush-heading' + i">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse' + i"
+                                            aria-expanded="false" [attr.aria-controls]="'flush-collapse' + i"
+                                            (click)="fetchGuestInformations(reservation[0])">
+                                            Misafir Bilgileri
+                                        </button>
+                                    </h2>
+                                    <div [attr.id]="'flush-collapse' + i" class="accordion-collapse collapse"
+                                        [attr.aria-labelledby]="'flush-heading' + i"
+                                        [attr.data-bs-parent]="'#accordionFlushExample' + i">
+                                        <div class="accordion-body">
+                                            <ul *ngIf="guestInformations[reservation[0]]">
+                                                <li class="py-3"
+                                                    *ngFor="let guest of guestInformations[reservation[0]]">
+                                                    <strong>Name:</strong> {{ guest.name }} {{ guest.surname }}<br>
+                                                    <strong>ID:</strong> {{ guest.identificationNumber }}<br>
+                                                    <strong>Gender:</strong> {{ guest.gender }}
+                                                </li>
+                                            </ul>
+                                            <div *ngIf="!guestInformations[reservation[0]]">
+                                                Loading guest informations...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #noReservations>
+                    <p class="text-center">You have no reservations.</p>
+                </ng-template>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</app-layout>

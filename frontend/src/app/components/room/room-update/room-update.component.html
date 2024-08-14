@@ -1,0 +1,52 @@
+<app-layout>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h2>Oda Güncelle</h2>
+                <form [formGroup]="roomForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="roomType" class="form-label">Oda Tipi</label>
+                        <input type="text" id="roomType" class="form-control" formControlName="roomType" />
+                        <div *ngIf="roomForm.get('roomType')?.invalid && roomForm.get('roomType')?.touched"
+                            class="text-danger">
+                            Oda Tipi gereklidir.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="capacity" class="form-label">Kapasite</label>
+                        <input type="number" id="capacity" class="form-control" formControlName="capacity" />
+                        <div *ngIf="roomForm.get('capacity')?.invalid && roomForm.get('capacity')?.touched"
+                            class="text-danger">
+                            Kapasite 1 ile 8 arasında olmalıdır.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Fiyat</label>
+                        <input type="number" id="price" class="form-control" formControlName="price" />
+                        <div *ngIf="roomForm.get('price')?.invalid && roomForm.get('price')?.touched"
+                            class="text-danger">
+                            Fiyat gereklidir.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="roomStatus" class="form-label">Oda Durumu</label>
+                        <select id="roomStatus" class="form-control" formControlName="roomStatus">
+                            <option *ngFor="let status of roomStatuses" [value]="status">{{ status }}</option>
+                        </select>
+                        <div *ngIf="roomForm.get('roomStatus')?.invalid && roomForm.get('roomStatus')?.touched"
+                            class="text-danger">
+                            Oda Durumu gereklidir.
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" [disabled]="roomForm.invalid">Güncelle</button>
+                </form>
+                <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div> <!-- Mesajı göster -->
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+            </div>
+        </div>
+    </div>
+</app-layout>

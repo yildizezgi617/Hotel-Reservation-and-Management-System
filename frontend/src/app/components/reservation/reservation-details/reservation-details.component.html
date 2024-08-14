@@ -1,0 +1,41 @@
+<app-layout>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div *ngIf="reservationDetails">
+                    <h1>Rezervasyon Detayları</h1>
+                    <p><strong>Rezervasyon Numarası</strong> TTLYREV{{ reservationDetails.id }}</p>
+                    <p><strong>Hotel Name:</strong> {{ reservationDetails.hotel.name }}</p>
+                    <p><strong>Hotel Phone Number:</strong> {{ reservationDetails.hotel.phoneNumber }}</p>
+                    <p><strong>Hotel Star:</strong> {{ reservationDetails.hotel.hotelStar }}</p>
+                    <p><strong>Hotel Description:</strong> {{ reservationDetails.hotel.description }}</p>
+                    <p><strong>Hotel Address:</strong> {{ reservationDetails.hotel.hotelAddress.addressText }}</p>
+                    <p><strong>District:</strong> {{ reservationDetails.hotel.hotelAddress.district.name }}</p>
+                    <p><strong>City:</strong> {{ reservationDetails.hotel.hotelAddress.district.city.name }}</p>
+                    <p><strong>Room Type:</strong> {{ reservationDetails.room.roomType }}</p>
+                    <p><strong>Room Capacity:</strong> {{ reservationDetails.room.capacity }}</p>
+                    <p><strong>Room Price:</strong> {{ reservationDetails.room.price }}</p>
+                    <p><strong>Giriş Tarihi:</strong> {{ reservationDetails.enteranceDay }}</p>
+                    <p><strong>Çıkış Tarihi:</strong> {{ reservationDetails.releaseDay }}</p>
+                    <p><strong>Ödenen Tutar:</strong> {{ reservationDetails.totalAmount }}</p>
+                    <p><strong>Ödeme Türü:</strong> {{ reservationDetails.payment?.paymentType || 'Not Paid Yet' }}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2>Misafir Bilgileri</h2>
+                <div *ngIf="guestInformations.length > 0; else noGuests">
+                    <ul>
+                        <li *ngFor="let guest of guestInformations">
+                            {{ guest.name }} {{ guest.surname }} ({{ guest.gender }})
+                        </li>
+                    </ul>
+                </div>
+                <ng-template #noGuests>No guests added.</ng-template>
+
+                <button class="btn btn-outline-primary" (click)="redirectToHome()">Ana Sayfaya Git</button>
+            </div>
+            <ng-template #loading>Loading...</ng-template>
+        </div>
+    </div>
+
+</app-layout>

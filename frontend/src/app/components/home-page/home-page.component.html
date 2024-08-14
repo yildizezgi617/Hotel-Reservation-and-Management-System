@@ -1,0 +1,50 @@
+<app-layout>
+    <div class="background-image mb-5">
+        <div class="container2 d-flex justify-content-center">
+            <img class="img"
+                src="https://i.ibb.co/c82c3xP/DALL-E-2024-07-03-12-33-07-A-vibrant-logo-for-Tatilya-com-featuring-elements-of-the-sea-sand-sun-and.png"
+                alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <form [formGroup]="searchForm">
+                        <mat-form-field class="px-3">
+                            <mat-label>Lokasyon</mat-label>
+                            <input matInput formControlName="location" placeholder="Şehir veya İlçe">
+                        </mat-form-field>
+                        <mat-form-field class="px-3">
+                            <mat-label>Tarih Aralığını Girin</mat-label>
+                            <mat-date-range-input [rangePicker]="picker">
+                                <input matStartDate formControlName="startDate" placeholder="Başlangıç Tarihi">
+                                <input matEndDate formControlName="endDate" placeholder="Bitiş Tarihi">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                        <mat-form-field class="px-3">
+                            <mat-label>Oda Türü</mat-label>
+                            <input matInput formControlName="roomType" placeholder="Oda Türü">
+                        </mat-form-field>
+                        <mat-form-field class="px-3">
+                            <mat-label>Kapasite</mat-label>
+                            <input matInput formControlName="capacity" type="number" placeholder="Kapasite">
+                        </mat-form-field>
+                        <button class="btn btn-primary" [disabled]="!searchForm.valid" (click)="onSearch()">
+                            Tatil Ara
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container slider my-4">
+        <app-city-slider></app-city-slider>
+    </div> -->
+</app-layout>
+
+
+
+<!--
+5-Admin Panel
+7-Nottification Eklenmesi -->

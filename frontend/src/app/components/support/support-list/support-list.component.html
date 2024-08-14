@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Destek Talepleri</h2>
+    <div *ngIf="supportRequests.length === 0" class="alert alert-info">Henüz destek talebiniz bulunmamaktadır.</div>
+    <div *ngIf="supportRequests.length > 0">
+        <div *ngFor="let support of supportRequests" class="card mb-3">
+            <div class="card-header">
+                <h3>{{ support.title }}</h3>
+            </div>
+            <div class="card-body">
+                <p>{{ support.text }}</p>
+                <p><strong>Durum:</strong> {{ support.demandStatus }}</p>
+            </div>
+        </div>
+    </div>
+</div>

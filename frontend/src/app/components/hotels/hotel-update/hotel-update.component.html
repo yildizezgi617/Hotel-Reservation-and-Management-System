@@ -1,0 +1,37 @@
+<app-layout>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h4>Hotel Güncelle</h4>
+            <form [formGroup]="hotelForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Hotel Adı</label>
+                    <input type="text" id="name" formControlName="name" class="form-control" />
+                    <div *ngIf="hotelForm.get('name')?.invalid && hotelForm.get('name')?.touched" class="text-danger">
+                        Hotel adı boş olamaz
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Telefon Numarası</label>
+                    <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control" />
+                    <div *ngIf="hotelForm.get('phoneNumber')?.invalid && hotelForm.get('phoneNumber')?.touched"
+                        class="text-danger">
+                        Telefon numarası boş olamaz ve sadece rakamlardan oluşmalıdır
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="hotelStar" class="form-label">Hotel Yıldızı</label>
+                    <input type="number" id="hotelStar" formControlName="hotelStar" class="form-control" />
+                    <div *ngIf="hotelForm.get('hotelStar')?.invalid && hotelForm.get('hotelStar')?.touched"
+                        class="text-danger">
+                        Hotel yıldızı 1 ile 5 arasında olmalıdır
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </form>
+            <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</app-layout>

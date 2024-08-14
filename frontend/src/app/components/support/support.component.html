@@ -1,0 +1,21 @@
+<app-layout>
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <div class="list-group">
+                    <h4>Destek Talep Yönetimi</h4>
+                    <a routerLink="supportlist" class="list-group-item list-group-item-action" aria-current="true"
+                        (click)="navigateToSupportList()">
+                        Destek Taleplerim
+                    </a>
+                    <a class="list-group-item list-group-item-action" routerLink="createsupport">Talep Oluştur</a>
+
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-8">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</app-layout>

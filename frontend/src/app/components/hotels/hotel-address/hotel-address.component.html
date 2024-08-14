@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <h2>Otel Adresi Ekle</h2>
+    <form [formGroup]="hotelAddressForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="cityId" class="form-label">Şehir</label>
+            <select id="cityId" formControlName="cityId" class="form-control form-select">
+                <option selected>Lütfen İl Seçiniz</option>
+                <option *ngFor="let city of cities" [value]="city.id">{{ city.name }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="districtId" class="form-label">İlçe</label>
+            <select id="districtId" formControlName="districtId" class="form-control form-select">
+                <option selected>Lütfen İlçe Seçiniz</option>
+                <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="addressText" class="form-label">Açık Adres</label>
+            <input type="text" id="addressText" formControlName="addressText" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="hotelAddressForm.invalid">Adres Ekle</button>
+    </form>
+    <div *ngIf="message" class="alert alert-success mt-3">{{ message }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div> <!-- Mesajı göster -->
+</div>
+
+
+<!--
+Oda eklemek
+odaya bağlı imageurl eklemek
+kullanıcıya adres eklemek
+hotel adresini görüntülemek
+hotel resimlerini görüntülemek
+hotel resmi silmek
+odaları güncellemek
+otel aratmak -->
